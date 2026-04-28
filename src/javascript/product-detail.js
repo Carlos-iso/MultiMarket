@@ -12,9 +12,9 @@ async function fetchProduct(params) {
     console.log('Produto:', product)
 
     document.querySelector('.product-title').textContent = product.title;
-    document.querySelector('.product-price').textContent = `R$ ${product.price}`;
+    document.querySelector('.product-price').textContent = `R$ ${product.price.toFixed(2).replace('.', ',')}`;
     document.querySelector('.product-description').textContent = product.description
-    
+
     const imgElement = document.createElement('img');
     imgElement.src = product.images && product.images[0] ? product.images[0] : 'https://placehold.co/400x300?text=Sem+Imagem';
     imgElement.alt = product.title;
@@ -31,7 +31,7 @@ async function fetchRelatedProducts() {
 
     const grid = document.getElementById('related-grid');
 
-    products.slice(0, 4).forEach(function(product) {
+    products.slice(0, 4).forEach(function (product) {
         const card = document.createElement('div');
         card.classList.add('related-card');
 
