@@ -6,9 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link rel="stylesheet" href="../src/css/main.css">
+    
 </head>
 
 <body>
+    <header class="desktop-header">
+    <a href="../index.html" class="logo">MultiMarket</a>
+    <input type="text" placeholder="Buscar">
+    <a href="#" class="cart-icon">🛒</a>
+</header>
     <header class="product-header">
         <a href="../index.html" class="back-btn">←</a>
         <h2>Produto Detalhe</h2>
@@ -22,11 +28,11 @@
         <section class="product-info">
             <h1 class="product-title"></h1>
             <p class="product-price"></p>
-            <p class="description-label">Descrição:</p>
+            <p class="description-label">Descrição do produto:</p>
             <p class="product-description"></p>
             <div class="buttons-container">
+                <button class="btn-buy">Comprar Agora</button>
                 <button class="btn-cart">Adicionar ao carrinho</button>
-                <button class="btn-buy">Comprar</button>
             </div>
 
         </section>
@@ -37,7 +43,7 @@
             </div>
         </section>
     </main>
-    <script src="../src/javascript/product-detail.js"></script>
+   
 
     <nav class="bottom-nav">
         <a href="../index.html" class="nav-item">
@@ -53,6 +59,10 @@
             <span>Perfil</span>
         </a>
     </nav>
+
+    <script src="../src/javascript/utils.js"></script>
+     <script src="../src/javascript/product-detail.js"></script>
+     <script src="../src/javascript/app.js"></script>
 
 </body>
 

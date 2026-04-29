@@ -15,9 +15,11 @@ body {
     width: 100%;
     background-color: #1a1a2e;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
-    min-height: 300px
+    min-height: 300px;
+
 }
 
 .product-images img {
@@ -103,11 +105,12 @@ body {
 
 .related-card {
     flex: 1;
-    background-color: #ffffff;
+    background-color: #ede7f6;
     border-radius: 8px;
     overflow: hidden;
     cursor: pointer;
 }
+
 
 .related-card p {
     font-size: 12px;
@@ -192,4 +195,114 @@ body {
 .buttons-container .btn-buy {
     width: 50%;
     margin-bottom: 0;
+}
+
+@media (min-width: 768px) {
+
+    body {
+        max-width: 900px;
+        margin: 0 auto;
+    }
+
+    .product-header {
+        display: none;
+    }
+    .buttons-container {
+    flex-direction: column;
+}
+
+.buttons-container .btn-cart,
+.buttons-container .btn-buy {
+    width: 100%;
+}
+
+    .desktop-header {
+        background-color: #6c3fcf;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 16px 24px;
+    }
+
+    .desktop-header .logo {
+        color: white;
+        font-size: 20px;
+        font-weight: bold;
+        text-decoration: none;
+    }
+
+    .desktop-header input {
+        padding: 8px 16px;
+        border-radius: 20px;
+        border: none;
+        width: 300px;
+        font-size: 14px;
+    }
+
+    .desktop-header .cart-icon {
+        color: white;
+        font-size: 24px;
+        text-decoration: none;
+    }
+
+    .product-detail-desktop {
+        display: flex;
+        gap: 24px;
+        padding: 24px;
+        background-color: white;
+    }
+
+    .product-images {
+        width: 40%;
+        min-height: 250px;
+    }
+
+    .product-info {
+        flex: 1;
+    }
+
+    .product-title {
+        text-align: left;
+        font-size: 22px;
+    }
+
+    .product-price {
+        text-align: left;
+        font-size: 32px;
+    }
+
+    .bottom-nav {
+        display: none;
+    }
+
+    .related-grid {
+        flex-wrap: wrap;
+    }
+
+    .related-card {
+        flex: 0 0 22%;
+    }
+
+    .related-card img {
+        height: 150px;
+    }
+}
+.thumbnail-container {
+    display: flex;
+    gap: 8px;
+    padding: 8px;
+    background-color: #1a1a2e;
+}
+
+.thumbnail {
+    width: 60px;
+    height: 60px;
+    object-fit: cover;
+    border-radius: 4px;
+    cursor: pointer;
+    border: 2px solid transparent;
+}
+
+.thumbnail:hover {
+    border-color: #00c9a7;
 }
