@@ -22,7 +22,7 @@ async function fetchProduct() {
     thumbnailContainer.classList.add('thumbnail-container');
 
     if (product.images && product.images.length > 0) {
-        product.images.forEach(function(imgUrl) {
+        product.images.forEach(function (imgUrl) {
             const thumb = document.createElement('img');
             thumb.src = imgUrl;
             thumb.classList.add('thumbnail');
@@ -41,7 +41,7 @@ async function fetchRelatedProducts() {
 
     const grid = document.getElementById('related-grid');
 
-    products.slice(0, 8).forEach(function(product) {
+    products.slice(0, 8).forEach(function (product) {
         const card = document.createElement('div');
         card.classList.add('related-card');
 
