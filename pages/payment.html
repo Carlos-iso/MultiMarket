@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagamento</title>
+    <link rel="stylesheet" href="../src/css/payment.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+    <div class="header">
+        <span onclick="history.back()" style="cursor:pointer">←</span>
+        <h1>Pagamento</h1>
+    </div>
+
+    <div class="product">
+        <div class="product-image"></div>
+        <div class="product-details">
+            <p class="product-title"></p>
+            <p class="product-price"></p>
+        </div>
+    </div>
+
+    <div class="payment">
+        <h2>Método de pagamento</h2>
+        <div class="option" data-method="pix">
+            <i class="fa-brands fa-pix option-icon"></i>
+            <span>Pix</span>
+        </div>
+        <div class="option" data-method="card">
+            <i class="fas fa-credit-card option-icon"></i>
+            <span>Cartão de Crédito</span>
+        </div>
+        <div class="option" data-method="boleto">
+            <i class="fas fa-barcode option-icon"></i>
+            <span>Boleto</span>
+        </div>
+    </div>
+
+    <div class="footer">
+        <span class="total-label">TOTAL: R$ 0,00</span>
+        <button class="pay-button">Fazer Pedido</button>
+    </div>
+
+    <script src="../src/javascript/payment.js"></script>
+</body>
+</html>

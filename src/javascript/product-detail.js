@@ -1,68 +1,106 @@
 const params = new URLSearchParams(window.location.search);
 const productId = params.get('id');
 
-console.log('ID do produto:', productId);
+console.log('Product ID:', productId);
 
+let currentProduct = null;
+
+// FETCH PRODUCT
 async function fetchProduct() {
-    const response = await fetch(`https://api.escuelajs.co/api/v1/products/${productId}`);
-    const product = await response.json();
+    try {
+        const response = await fetch(`https://api.escuelajs.co/api/v1/products/${productId}`);
 
-    console.log('Produto:', product);
+        if (!response.ok) throw new Error(`Erro ao buscar produto: ${response.status}`);
 
-    document.querySelector('.product-title').textContent = product.title;
-    document.querySelector('.product-price').textContent = `R$ ${toCoin(product.price)}`;
-    document.querySelector('.product-description').textContent = product.description;
+        const product = await response.json();
+        currentProduct = product;
 
-    const imgElement = document.createElement('img');
-    imgElement.src = product.images && product.images[0] ? product.images[0] : 'https://placehold.co/400x300?text=Sem+Imagem';
-    imgElement.alt = product.title;
-    document.querySelector('.product-images').appendChild(imgElement);
+        document.querySelector('.product-title').textContent = product.title;
+        document.querySelector('.product-price').textContent = `R$ ${toCoin(product.price)}`;
+        document.querySelector('.product-description').textContent = product.description;
 
-    const thumbnailContainer = document.createElement('div');
-    thumbnailContainer.classList.add('thumbnail-container');
+        const imagesContainer = document.querySelector('.product-images');
+        imagesContainer.innerHTML = '';
 
-    if (product.images && product.images.length > 0) {
-        product.images.forEach(function (imgUrl) {
+        const imgElement = document.createElement('img');
+        imgElement.src = product.images?.[0] || 'https://placehold.co/400x300?text=No+Image';
+        imgElement.alt = product.title;
+        imgElement.onerror = () => {
+            imgElement.src = 'https://placehold.co/400x300?text=No+Image';
+        };
+        imagesContainer.appendChild(imgElement);
+
+        const thumbnailContainer = document.createElement('div');
+        thumbnailContainer.classList.add('thumbnail-container');
+
+        product.images?.forEach(imgUrl => {
             const thumb = document.createElement('img');
             thumb.src = imgUrl;
             thumb.classList.add('thumbnail');
+            thumb.onerror = () => {
+                thumb.src = 'https://placehold.co/60x60?text=No+Image';
+            };
+            thumb.addEventListener('click', () => {
+                imgElement.src = imgUrl;
+            });
             thumbnailContainer.appendChild(thumb);
         });
-    }
 
-    document.querySelector('.product-images').appendChild(thumbnailContainer);
+        imagesContainer.appendChild(thumbnailContainer);
+
+    } catch (error) {
+        console.error('Erro ao carregar produto:', error);
+    }
 }
 
 fetchProduct();
 
+// RELATED PRODUCTS
 async function fetchRelatedProducts() {
-    const response = await fetch(`https://api.escuelajs.co/api/v1/products?limit=8`);
-    const products = await response.json();
+    try {
+        const response = await fetch(`https://api.escuelajs.co/api/v1/products?limit=8`);
 
-    const grid = document.getElementById('related-grid');
+        if (!response.ok) throw new Error(`Erro ao buscar produtos relacionados: ${response.status}`);
 
-    products.slice(0, 8).forEach(function (product) {
-        const card = document.createElement('div');
-        card.classList.add('related-card');
+        const products = await response.json();
+        const grid = document.getElementById('related-grid');
 
-        const img = document.createElement('img');
-        img.src = product.images && product.images[0] ? product.images[0] : 'https://placehold.co/200x120?text=Sem+Imagem';
-        img.alt = product.title;
+        products.slice(0, 8).forEach(product => {
+            const card = document.createElement('div');
+            card.classList.add('related-card');
 
-        const name = document.createElement('p');
-        name.textContent = product.title;
+            const img = document.createElement('img');
+            img.src = product.images?.[0] || 'https://placehold.co/200x120?text=No+Image';
+            img.alt = product.title;
+            img.onerror = () => {
+                img.src = 'https://placehold.co/200x120?text=No+Image';
+            };
 
-        const price = document.createElement('p');
-        price.textContent = `R$ ${toCoin(product.price)}`;
-        price.style.fontSize = '12px';
-        price.style.color = '#333';
-        price.style.padding = '0 8px 8px';
+            const name = document.createElement('p');
+            name.textContent = product.title;
 
-        card.appendChild(img);
-        card.appendChild(name);
-        card.appendChild(price);
-        grid.appendChild(card);
-    });
+            const price = document.createElement('p');
+            price.textContent = `R$ ${toCoin(product.price)}`;
+            price.style.fontSize = '12px';
+
+            card.appendChild(img);
+            card.appendChild(name);
+            card.appendChild(price);
+            grid.appendChild(card);
+        });
+
+    } catch (error) {
+        console.error('Erro ao carregar produtos relacionados:', error);
+    }
 }
 
 fetchRelatedProducts();
+
+// BUY BUTTON
+const buyButton = document.querySelector('.btn-buy');
+
+buyButton.addEventListener('click', () => {
+    if (!currentProduct) return;
+    localStorage.setItem('product', JSON.stringify(currentProduct));
+    window.location.href = './payment.html';
+});
