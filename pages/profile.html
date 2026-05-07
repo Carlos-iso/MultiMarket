@@ -1,139 +1,71 @@
-  <!doctype html>
-  <html lang="pt-br">
-    <head>
-      <meta charset="UTF-8" />
-      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-      <title>MultiMarket - Meu Perfil</title>
-      <link rel="stylesheet" href="../src/css/profile.css" />
-    </head>
-    <body>
-      <!--Cabeçalho -->
-      <header class="profile-header">
-        <img
-          src="../src/assets/imgs/Logo 1.png"
-          alt="MultiMarket"
-          class="profile-logo"
-        />
+<div class="profile-page">
 
-        <!-- Barra de busca -->
-        <form class="profile-searchbar" role="search">
-          <input
-            type="search"
-            class="profile-search"
-            placeholder="Buscar"
-            aria-label="Buscar"
+  <main class="profile-main">
+    <section class="profile-card">
 
-          />
+      <!-- Avatar -->
+      <div class="profile-avatar-wrap">
+        <img src="../src/assets/icons/perfil.svg" class="profile-avatar">
+      </div>
 
-          <!-- Botão de pesquisa -->
-          <button
-            type="submit"
-            class="profile-search-button"
-            aria-label="Pesquisar"
-          >
-            <svg viewBox="0 0 24 24" aria-hidden="true">
-              <path
-                d="M10 4a6 6 0 1 1 0 12 6 6 0 0 1 0-12Zm0-2a8 8 0 1 0 4.9 14.3l4.4 4.4 1.4-1.4-4.4-4.4A8 8 0 0 0 10 2Z"
-              ></path>
-            </svg>
-          </button>
-        </form>
+      <h1 class="profile-name">PERFIL DE JHON</h1>
 
-        <!-- Ícone do usuário -->
-        <button type="button" class="profile-top-icon" aria-label="Conta" onclick="Conta()">
-          <img src="../src/assets/icons/sharp-person.png" alt="" />
-        </button>
-      </header>
+      <form class="profile-form">
 
-      <!-- Conteúdo principal -->
-      <main class="profile-main">
-        <section class="profile-card" aria-labelledby="profile-title">
-
-          <!-- Avatar do usuário -->
-          <div class="profile-avatar-wrap">
-            <img
-              src="../src/assets/icons/sharp-person.png"
-              alt="Foto do usuário"
-              class="profile-avatar"
-              id="profile-avatar"
-            />
+        <!-- ID -->
+        <div class="profile-field">
+          <label>ID</label>
+          <div class="input-wrapper">
+            <input type="text" value="1" readonly>
+            <img src="src/assets/icons/edit.svg" class="edit-icon">
           </div>
+        </div>
 
-
-          <h1 id="profile-title" class="profile-name"></h1>
-
-          <!-- Formulário de edição do perfil -->
-          <form class="profile-form" id="profile-form">
-            <label class="profile-field">
-              <span>ID</span>
-              <input type="text" id="profile-id" readonly />
-              <br>
-            </label>
-
-
-            <label class="profile-field">
-              <span>Nome</span>
-              <input type="text" id="profile-name-field" readonly />
-              <br>
-            </label>
-
-
-            <label class="profile-field profile-field--full">
-              <span>E-mail</span>
-              <input type="email" id="profile-email-field" readonly />
-              <br>
-            </label>
-
-
-            <label class="profile-field profile-field--full">
-              <span>Role</span>
-              <input type="text" id="profile-role-field" readonly />
-              <br>
-            </label>
-          </form>
-
-          <!-- Mensagem de feedback -->
-          <p id="profile-message" class="profile-message" role="status" aria-live="polite"></p>
-
-          <!-- Ações do perfil -->
-          <div class="profile-actions">
-            <button type="button" id="profile-refresh" class="profile-button profile-button--confirm">
-              Confirmar
-            </button>
-            <button type="button" id="profile-logout" class="profile-button profile-button--logout">
-              Sair
-            </button>
+        <!-- Username -->
+        <div class="profile-field">
+          <label>USERNAME</label>
+          <div class="input-wrapper">
+            <input type="text" value="Jhon" readonly>
+            <img src="src/assets/icons/edit.svg" class="edit-icon">
           </div>
+        </div>
 
-
-           <!-- Rodapé com navegação  -->
-           
-          <div class="profile-section">
-            <button type="button" id="nav-shop" class="profile-home" aria-label="Início">
-              <img src="../src/assets/icons/inicio.svg" alt="Início" />
-            </button>
-            
-            <button type="button" id="nav-categorias" class="profile-categories" aria-label="Categorias">
-              <img src="../src/assets/icons/categorias.svg" alt="Categorias" />
-            </button>
- 
-            <button type="button" id="nav-perfil" class="profile-perfil" aria-label="Perfil">
-              <img src="../src/assets/icons/perfil.svg" alt="Perfil" />
-            </button>
+        <!-- Email -->
+        <div class="profile-field">
+          <label>E-MAIL</label>
+          <div class="input-wrapper">
+            <input type="email" value="jhon@mail.com" readonly>
+            <img src="src/assets/icons/edit.svg" class="edit-icon">
           </div>
-           
+        </div>
 
-        </section>
-      </main>
+        <!-- Password -->
+        <div class="profile-field">
+          <label>PASSWORD</label>
+          <div class="input-wrapper">
+            <input type="password" value="12345678" readonly>
+            <img src="src/assets/icons/edit.svg" class="edit-icon">
+          </div>
+        </div>
 
-      <!-- Rodapé -->
-      <footer class="profile-footer">
-        <p>&copy; 2026 MultiMarket. Todos os direitos reservados.</p>
-      </footer>
-      <script src="../src/javascript/profile.js"></script>
-      <script src="../src/javascript/app.js"></script>
-    </body>
-  </html>
+        <!-- Role -->
+        <div class="profile-field">
+          <label>ROLE</label>
+          <div class="input-wrapper">
+            <input type="text" value="customer" readonly>
+            <img src="src/assets/icons/edit.svg" class="edit-icon">
+          </div>
+        </div>
 
+      </form>
 
+      <!-- Botões -->
+      <div class="profile-actions">
+        <button class="btn confirm">CONFIRMAR</button>
+        <button onclick="doLogout()" class="btn logout">SAIR</button>
+      </div>
 
+    </section>
+  </main>
+
+</div>

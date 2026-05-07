@@ -1,14 +1,14 @@
 const components = {
-	"header": "../pages/header.html",
-	"cart": "../pages/cart.html",
-	"home": "../index.html",
-	"catalog": "../pages/catalog.html",
-	"profile": "../pages/profile.html",
-	"footer": "../pages/footer.html",
-	"footer-cart": "../pages/footer-cart.html",
-	"details": "../pages/details.html",
-	"payment": "../pages/payment.html",
-	"footer-payment": "../pages/footer-payment.html",
+	"header": "/pages/header.html",
+	"cart": "/pages/cart.html",
+	"home": "/index.html",
+	"catalog": "/pages/catalog.html",
+	"profile": "/pages/profile.html",
+	"footer": "/pages/footer.html",
+	"footer-cart": "/pages/footer-cart.html",
+	"details": "/pages/details.html",
+	"payment": "/pages/payment.html",
+	"footer-payment": "/pages/footer-payment.html",
 };
 
 async function loadHeader(page) {
@@ -33,7 +33,7 @@ function updatePageStyle(page) {
 	}
 
 	const pageStyles = {
-		profile: "../src/css/profile.css",
+		profile: "/src/css/profile.css",
 	};
 
 	const stylePath = pageStyles[page];

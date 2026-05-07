@@ -1,0 +1,29 @@
+@import url("https://fonts.googleapis.com/css2?family=Candal&display=swap");
+:root {
+	--search-height: 35px;
+	--header-height: 160px;
+	--roxo: #4a148c;
+	--roxo-médio: #6a1b9a;
+	--roxo-claro: #f3e5f5;
+	--radius: 10px;
+}
+
+
+* {
+	font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+	font-weight: 400;
+	font-style: normal;
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+	text-decoration: none;
+	transition: 0.3s cubic-bezier(1, 0, 0, 1);
+}
+
+@media (min-width: 768px) {
+	#app {
+		max-width: 600px;
+		margin: 0 auto;
+		padding-bottom: 80px;
+	}
+}

@@ -3,9 +3,8 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cadastro</title>
+    <title>Cadastro - MultiMarket</title>
     <link rel="stylesheet" href="../src/css/register.css" />
- 
   </head>
   <body>
     <main class="auth-shell auth-shell--register">
@@ -29,7 +28,7 @@
           <input type="email" id="reg-email" placeholder="Enter your email" required />
 
           <div class="input-box">
-            <input type="password" id="password" placeholder="Password" minlength="6" maxlength="8" required />
+            <input type="password" id="reg-password" placeholder="Password" minlength="6" maxlength="8" required />
 
             <img
               src="../src/assets/icons/eye-close.svg"
@@ -38,9 +37,8 @@
             />
           </div>
 
-
           <div class="input-box">
-            <input type="password" id="confirm-password" placeholder="Confirm password" minlength="6" maxlength="8" required />
+            <input type="password" id="reg-confirm-password" placeholder="Confirm password" minlength="6" maxlength="8" required />
 
             <img
               src="../src/assets/icons/eye-close.svg"
@@ -52,7 +50,7 @@
           <button type="submit">Cadastrar</button>
 
           <div class="links">
-            <p>Já tem conta? <a href="../pages/login.html">Entrar</a></p>
+            <p>Já tem conta? <a href="./login.html">Entrar</a></p>
           </div>
 
         </form>
@@ -61,13 +59,11 @@
       </section>
     </main>
 
-    
     <footer>
       <p>&copy; 2026 MultiMarket. Todos os direitos reservados.</p>
     </footer>
     
-    
-    <script src="../src/javascript/app.js"></script>
+    <script src="../src/javascript/register.js"></script>
    
   </body>
 </html>
