@@ -1,0 +1,29 @@
+#footer-cart {
+	font-family: candal, sans-serif;
+	position: fixed;
+	bottom: 0;
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	background-color: #4a148c;
+	color: white;
+	padding: 16px;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 16px 20px;
+	border-radius: 16px 16px 0 0;
+}
+
+@media (min-width: 768px) {
+	#footer-cart {
+		width: 600px;
+		left: 50%;
+		transform: translateX(-50%);
+		border-radius:
+			8px,
+			8px 0 0;
+		padding: 12px 20px;
+		gap: 20px;
+		justify-content: center;
+	}
+}

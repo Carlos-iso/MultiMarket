@@ -1,0 +1,163 @@
+.product {
+    padding: 20px 15px;
+    max-width: 440px;
+    margin: 20px auto;
+    border-radius: 10px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    background: #e8d5f5;
+}
+
+.product img {
+    width: 60px;
+    height: 60px;
+    border-radius: 8px;
+}
+
+.product-image {
+    width: 70px;
+    height: 70px;
+    background: #bfbfbf;
+    border-radius: 8px;
+    flex-shrink: 0;
+    align-self: center;
+}
+
+.product-details {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    justify-content: center;
+    align-self: center;
+}
+
+.product-price {
+    font-size: 22px;
+    font-weight: 800;
+}
+
+.payment {
+    padding: 15px;
+    background: #ddd;
+    max-width: 440px;
+    margin: 0 auto 20px auto;
+    border-radius: 10px;
+}
+
+.payment-header{
+    display: flex;
+    align-items: center;
+    padding: 16px;
+    gap: 12px;
+}
+
+
+.payment-header h1 {
+    font-family: 'Candal', sans-serif;
+    text-align: center;
+    flex: 1;
+}
+
+.payment h2 {
+    text-align: center;
+    font-size: 14px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+    margin-bottom: 5px;
+}
+
+.option {
+    padding: 15px 0;
+    border-top: 1px solid #aaa;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.option-icon {
+    font-size: 28px;
+    width: 40px;
+    text-align: center;
+    color: #4a148c;
+    flex-shrink: 0;
+}
+
+.option.selected {
+    background: #4a148c;
+    color: white;
+    border-radius: 8px;
+    padding-left: 10px;
+}
+
+.option.selected .option-icon {
+    color: white;
+}
+
+.footer-payment {
+    bottom: 0;
+    background: #4a148c;
+    display: flex;
+    padding: 15px 20px;
+    color: white;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: border-box;
+    border-radius: 16px 16px 0 0;
+}
+
+.footer-payment button {
+    padding: 10px 15px;
+    background: #00bfa5;
+    border: none;
+    cursor: pointer;
+    border-radius: 8px;
+    color: white;
+    font-weight: bold;
+}
+
+.footer-payment .total-label {
+    font-weight: 800;
+    font-size: 20px;
+}
+
+.back-btn {
+    background-color: none;
+    border: none;
+    color: #888;
+    width: 32px;
+    height: 32px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    outline: none;
+}
+
+
+@media (min-width: 600px) {
+    .product {
+        margin: 15px;
+        max-width: none;
+    }
+
+    .payment {
+        margin: 0 15px 80px 15px;
+        max-width: none;
+    }
+
+     .footer-payment {
+        position: fixed;
+        bottom: 0;
+        width: 600px;
+        left: 50%;
+        transform: translateX(-50%);
+        border-radius: 8px 8px 0 0;
+        justify-content: center;
+        gap: 20px;
+    }
+}
