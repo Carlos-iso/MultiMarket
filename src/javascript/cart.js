@@ -41,7 +41,7 @@ function renderCarrinho() {
     li.innerHTML = `
         <div class="item-esquerda">
         <input type="checkbox" class="checkbox_item" data-id="${item.id}">
-        <img src="${item.image}" alt="${item.title}">
+        <img src="${getSafeImage(item.image)}" alt="${item.title}">
         </div>
         <div class="item-info">
             <p>${item.title}</p>
@@ -70,6 +70,7 @@ function setupCartEvents() {
         carrinho.splice(index, 1);
         localStorage.setItem("carrinho", JSON.stringify(carrinho));
         renderCarrinho();
+        initCount();
       }
     }
   });
@@ -117,6 +118,7 @@ async function openCart() {
       );
       localStorage.setItem("paymentOrigin", "cart");
       openPayment();
+      initCount();
     });
   }
 }

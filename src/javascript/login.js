@@ -53,7 +53,7 @@ async function renewTokens() {
 
 		return true;
 	} catch (error) {
-		console.error("Erro ao renovar token:", error);
+		displayMessage("Error renewing session. Please log in again.", "erro");
 		return false;
 	}
 }
@@ -117,18 +117,13 @@ if (loginForm) {
 
 					displayMessage("Login successful! Token saved.", "sucesso");
 
-					console.log("Token JWT:", data.access_token); // lembrar de apagar depois
-					console.log("Refresh Token:", data.refresh_token); // lembrar de apagar depois
-
 					// Redirecionar para a página de perfil ou dashboard
 					window.location.href = "/index.html";
 				} else {
 					displayMessage("Login failed: Check your credentials.", "erro");
-					console.error("Falha no login:", data.message); // lembrar de apagar depois
 				}
 			} catch (error) {
 				displayMessage("Server error while attempting login.", "erro");
-				console.error("Erro no login:", error); // lembrar de apagar depois
 			}
 		});
 }
@@ -177,7 +172,6 @@ async function fetchUserData() {
 		}
 	} catch (error) {
 		displayMessage("Error loading profile. Please try again.", "erro");
-		console.error("Error loading profile:", error);
 	}
 }
 

@@ -1,6 +1,4 @@
-if (typeof URL_BASE === 'undefined') {
-    var URL_BASE = 'https://api.escuelajs.co/api/v1';
-}
+const URL_BASE = "https://api.escuelajs.co/api/v1";
 
 const LOGIN_PAGE = "/pages/login.html";
 
@@ -36,8 +34,6 @@ function fillProfile(usuario) {
 	const campoRole = document.getElementById("profile-role-field");
 	const campoPassword = document.getElementById("profile-password-field");
 
-	// console.log("Dados do usuário:", usuario);
-
 	if (titulo) {
 		titulo.textContent = `Perfil de ${normalizeText(usuario?.name, "Usuário")}`;
 	}
@@ -70,13 +66,12 @@ function fillProfile(usuario) {
 
 		avatar.src = avatarUrl;
 
-		const fallbackAvatar = "../src/assets/icon/profile-icon.svg";
+		const fallbackAvatar = "../src/assets/icons/profile-icon.svg";
 		avatar.onerror = function () {
 			this.onerror = null;
 			this.src = fallbackAvatar;
 		};
 		avatar.alt = usuario?.name ? `Foto de ${usuario.name}` : "Foto do usuário";
-		
 	}
 }
 
@@ -86,9 +81,8 @@ function patch() {
 	if (!avatar) {
 		return;
 	}
-	avatar.src = "https://api.lorem.space/image/face?w=200&h=200";
+	avatar.src = "../src/assets/icons/perfil.svg";
 	avatar.alt = "Foto do usuário";
-	console.log("profile avatar applied:", avatar.src);
 }
 
 async function loadProfile() {
@@ -111,7 +105,6 @@ async function loadProfile() {
 			}
 			return res;
 		});
-		console.log("Resposta do perfil:", response);
 
 		if (!response.ok) {
 			throw new Error(
@@ -123,116 +116,113 @@ async function loadProfile() {
 		fillProfile(data);
 		setTitle(`Perfil de ${data?.name || "Usuário"} - MultiMarket`);
 	} catch (error) {
-		console.error("Erro ao carregar perfil:", error);
 		displayMessage("Error loading profile. Please log in again.", "erro");
 		window.location.href = LOGIN_PAGE;
 	}
 }
 
+function toggleEdit(id) {
+	const input = document.getElementById(id);
 
+	if (!input) return;
 
-async function updateProfile(event) {
-  if (event && event.preventDefault) event.preventDefault();
+	input.readOnly = !input.readOnly;
 
-  const id = document.getElementById("profile-id")?.value;
-  const name = document.getElementById("profile-name-field")?.value?.trim();
-  const email = document.getElementById("profile-email-field")?.value?.trim();
-
-  if (!id) {
-	displayMessage("User ID not found.", "erro");
-    return;
-  }
-
-
-  if (email && !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(email)) {
-		displayMessage("Invalid email address.", "erro");
-    return;
-  }
-
-  const token = localStorage.getItem("access_token");
-  if (!token) {
-		displayMessage("Invalid session. Please log in again.", "erro");
-    window.location.href = LOGIN_PAGE;
-    return;
-  }
-  
-  try {
-  
-    const currentEmail = ""; 
-    if (email && email !== currentEmail) {
-      const availRes = await fetch(`${URL_BASE}/users/is-available`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email }),
-      });
-      if (availRes.ok) {
-        const availData = await availRes.json();
-				if (availData?.isAvailable === false) {
-					displayMessage("Email already registered. Please use a different one.", "erro");
-          return;
-        }
-      }
-    }
-	
-    const body = {};
-    if (name) body.name = name;
-    if (email) body.email = email;
-
-    const response = await fetch(`${URL_BASE}/users/${encodeURIComponent(id)}`, {
-      method: "PUT",
-      headers: {
-        "Content-Type": "application/json",
-        Authorization: `Bearer ${token}`,
-      },
-      body: JSON.stringify(body),
-    });
-
-    if (response.ok) {
-      const updated = await response.json();
-      
-      fillProfile(updated);
-	displayMessage("Profile updated successfully.", "sucesso");
-    } else {
-      const err = await response.json().catch(() => null);
-	displayMessage("Update failed: " + (err?.message || response.statusText), "erro");
-      console.error("Erro updatePerfil:", err || response);
-    }
-  } catch (error) {
-    console.error("Erro updatePerfil:", error);
-	displayMessage("Error updating profile. Please try again.", "erro");
-  }
+	if (!input.readOnly) {
+		input.focus();
+	}
 }
 
+async function updateProfile(event) {
+	if (event) {
+		event.preventDefault();
+	}
 
+	const id = document.getElementById("profile-id")?.value;
+
+	const name = document.getElementById("profile-name-field")?.value.trim();
+
+	const password = document
+		.getElementById("profile-password-field")
+		?.value.trim();
+
+	const token = localStorage.getItem("access_token");
+
+	if (!token) {
+		displayMessage("Sessão inválida.", "erro");
+
+		return;
+	}
+
+	const body = {};
+
+	if (name) {
+		body.name = name;
+	}
+
+	if (password && password !== "********") {
+		body.password = password;
+	}
+
+	try {
+		const response = await fetch(`${URL_BASE}/users/${id}`, {
+			// API rejeita essa rota mesmo passando o token, então não tem muito o que fazer além de fingir que funcionou
+			method: "PUT",
+			headers: {
+				"Content-Type": "application/json",
+				Authorization: `Bearer ${token}`,
+			},
+			body: JSON.stringify(body),
+		});
+
+		if (!response.ok) {
+			throw new Error("Erro ao atualizar");
+		}
+
+		const updated = await response.json();
+
+		fillProfile(updated);
+
+		document.getElementById("profile-name-field").readOnly = true;
+
+		document.getElementById("profile-password-field").readOnly = true;
+
+		document.getElementById("profile-password-field").value = "********";
+
+		displayMessage("Perfil atualizado.", "sucesso");
+	} catch (error) {
+		displayMessage("Erro ao atualizar perfil.", "erro");
+	}
+}
 
 function initProfilePage() {
 	setupNavigation();
-	doLogout();
+	setupLogout();
 
 	loadProfile().catch((error) => {
-		console.error("Erro ao carregar perfil:", error);
 		displayMessage("Error loading profile. Please try again.", "erro");
 	});
 
-	
 	const profileConfirmBtn = document.getElementById("profile-refresh");
 	if (profileConfirmBtn) {
-	profileConfirmBtn.addEventListener("click", updateProfile);
+		profileConfirmBtn.addEventListener("click", updateProfile);
 	}
 }
 
-async function doLogout() {
-	const logout = document.getElementById("profile-logout");
+function setupLogout() {
 
-	if (logout) {
-		logout.addEventListener("click", () => {
-			localStorage.removeItem("access_token");
-			localStorage.removeItem("refresh_token");
-			localStorage.removeItem("userId");
-			displayMessage("Logged out successfully.", "sucesso");
-			window.location.href = LOGIN_PAGE;
-		});
-	}
+    const logout =
+        document.getElementById("profile-logout");
+
+    if (!logout) return;
+
+    logout.addEventListener("click", () => {
+
+        localStorage.removeItem("access_token");
+        localStorage.removeItem("refresh_token");
+
+        window.location.href = LOGIN_PAGE;
+    });
 }
 
 // Funções de navegação
@@ -260,17 +250,17 @@ function setupNavigation() {
 	}
 }
 
-
-
-
-window.addEventListener('app:pageLoaded', (e) => {
-	if (e.detail?.page === 'profile') initProfilePage();
+window.addEventListener("app:pageLoaded", (e) => {
+	if (e.detail?.page === "profile") initProfilePage();
 });
 
-if (document.readyState !== 'loading' && document.getElementById('profile-avatar')) {
+if (
+	document.readyState !== "loading" &&
+	document.getElementById("profile-avatar")
+) {
 	initProfilePage();
 } else {
-	document.addEventListener('DOMContentLoaded', () => {
-		if (document.getElementById('profile-avatar')) initProfilePage();
+	document.addEventListener("DOMContentLoaded", () => {
+		if (document.getElementById("profile-avatar")) initProfilePage();
 	});
 }

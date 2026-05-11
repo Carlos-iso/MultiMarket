@@ -118,3 +118,26 @@
   background: var(--red);
   color: white;
 }
+
+.input-wrapper {
+  position: relative;
+  width: 100%;
+}
+
+.input-wrapper input {
+  width: 100%;
+  padding-right: 40px;
+}
+
+.edit-icon {
+  position: absolute;
+  right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 16px;
+  cursor: pointer;
+}
+
+.input-wrapper input:not([readonly]) {
+  border: 2px solid #16d3cb;
+}

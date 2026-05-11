@@ -8,6 +8,7 @@ async function initApp() {
 
 	setTitle("MultiMarket - Sua loja online");
 	await loadHeader("header");
+	initCount();
 	await loadApp("catalog");
 	await loadFooter("footer");
 
