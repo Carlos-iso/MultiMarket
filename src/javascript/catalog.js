@@ -1,3 +1,4 @@
+// const API_BASE = "https://fakestoreapi.com";
 const API_BASE = "https://api.escuelajs.co/api/v1";
 const LIMIT = 20;
 

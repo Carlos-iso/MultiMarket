@@ -129,7 +129,7 @@ function readStorageJSON(chave) {
 	try {
 		return JSON.parse(localStorage.getItem(chave));
 	} catch (error) {
-		console.error(`Erro ao ler ${chave} do localStorage:`, error);
+		displayMessage(`Erro ao acessar dados de ${chave}.`, 'erro');
 		return null;
 	}
 }
@@ -196,8 +196,7 @@ async function fetchUsersFromApi() {
 			users: toArray(data)
 		};
 	} catch (error) {
-		console.error('Erro ao buscar usuários da API:', error);
-
+		displayMessage(`Erro de conexão ao verificar a disponibilidade do e-mail. ${error}`, 'erro');
 		return {
 			ok: false,
 			users: []
@@ -264,7 +263,7 @@ async function checkEmailAvailability(email) {
 			isAvailable: false
 		};
 	} catch (error) {
-		console.error('Erro ao verificar disponibilidade do e-mail:', error);
+		displayMessage('Erro de conexão ao verificar a disponibilidade do e-mail.', 'erro');
 		return {
 			ok: false,
 			isAvailable: false
@@ -365,11 +364,11 @@ async function validateEmailField() {
 		return true;
 
 	} catch (error) {
-		console.error('Erro na verificação:', error);
 		updateEmailFieldState({
 			mensagem: 'Erro de conexão ao verificar a disponibilidade do e-mail.',
 			tipo: 'erro'
 		});
+		displayMessage('Erro de conexão ao verificar a disponibilidade do e-mail.', 'erro');
 		return false;
 	}
 }
@@ -441,12 +440,10 @@ if(registerForm){
 
 		else{
 			displayMessage('Erro no cadastro: ' + data.message, 'erro');
-			console.error('Erro no cadastro:', data);
 		}
     
 	} catch (error) {
 			displayMessage('Erro na requisição. Verifique a sua conexão.', 'erro');
-			console.error('Erro na requisição:', error);
 		}
     
 	});

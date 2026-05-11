@@ -1,17 +1,18 @@
 <div class="header">
 	<section class="logo-icon" onclick="goHome()">
-		<img src="../src/assets/icons/logo-icon.svg" alt="Logo da empresa" />
+		<img src="src/assets/icons/logo-icon.svg" alt="Logo da empresa" />
 	</section>
 	<section>
 		<form class="form-container">
 			<button type="button" onclick="openProfile()" class="profile-icon">
 				<img
-					src="../src/assets/icons/profile-icon.svg"
+					src="src/assets/icons/profile-icon.svg"
 					alt="Perfil do Usuário"
 				/>
 			</button>
 			<button type="button" onclick="openCart()" class="cart-icon">
-				<img src="../src/assets/icons/cart-icon.svg" alt="Carrinho de compras" />
+				<img src="src/assets/icons/cart-icon.svg" alt="Carrinho de compras" />
+				<textarea id="cart-count" readonly>0</textarea>
 			</button>
 		</form>
 		<form class="search-container" id="search-form" action="#" method="get">

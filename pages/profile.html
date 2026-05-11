@@ -3,66 +3,119 @@
   <main class="profile-main">
     <section class="profile-card">
 
-      <!-- Avatar -->
       <div class="profile-avatar-wrap">
-        <img src="../src/assets/icons/perfil.svg" class="profile-avatar">
+        <img
+          id="profile-avatar"
+          src="src/assets/icons/perfil.svg"
+          class="profile-avatar"
+        >
       </div>
 
-      <h1 class="profile-name">PERFIL DE JHON</h1>
+      <h1 id="profile-title" class="profile-name">
+        PERFIL
+      </h1>
 
-      <form class="profile-form">
+      <form class="profile-form" id="profile-form">
 
         <!-- ID -->
         <div class="profile-field">
           <label>ID</label>
+
           <div class="input-wrapper">
-            <input type="text" value="1" readonly>
-            <img src="src/assets/icons/edit.svg" class="edit-icon">
+            <input
+              type="text"
+              id="profile-id"
+              readonly
+            >
           </div>
         </div>
 
-        <!-- Username -->
+        <!-- USERNAME -->
         <div class="profile-field">
           <label>USERNAME</label>
+
           <div class="input-wrapper">
-            <input type="text" value="Jhon" readonly>
-            <img src="src/assets/icons/edit.svg" class="edit-icon">
+            <input
+              type="text"
+              id="profile-name-field"
+              readonly
+            >
+
+            <img
+              src="src/assets/icons/edit.svg"
+              class="edit-icon"
+              onclick="toggleEdit('profile-name-field')"
+            >
           </div>
         </div>
 
-        <!-- Email -->
+        <!-- EMAIL -->
         <div class="profile-field">
           <label>E-MAIL</label>
+
           <div class="input-wrapper">
-            <input type="email" value="jhon@mail.com" readonly>
-            <img src="src/assets/icons/edit.svg" class="edit-icon">
+            <input
+              type="email"
+              id="profile-email-field"
+              readonly
+            >
           </div>
         </div>
 
-        <!-- Password -->
+        <!-- PASSWORD -->
         <div class="profile-field">
           <label>PASSWORD</label>
+
           <div class="input-wrapper">
-            <input type="password" value="12345678" readonly>
-            <img src="src/assets/icons/edit.svg" class="edit-icon">
+            <input
+              type="password"
+              id="profile-password-field"
+              placeholder="********"
+              readonly
+            >
+
+            <img
+              src="src/assets/icons/edit.svg"
+              class="edit-icon"
+              onclick="toggleEdit('profile-password-field')"
+            >
           </div>
         </div>
 
-        <!-- Role -->
+        <!-- ROLE -->
         <div class="profile-field">
           <label>ROLE</label>
+
           <div class="input-wrapper">
-            <input type="text" value="customer" readonly>
-            <img src="src/assets/icons/edit.svg" class="edit-icon">
+            <input
+              type="text"
+              id="profile-role-field"
+              readonly
+            >
           </div>
         </div>
 
       </form>
 
-      <!-- Botões -->
+      <p id="profile-message" class="profile-message"></p>
+
       <div class="profile-actions">
-        <button class="btn confirm">CONFIRMAR</button>
-        <button onclick="doLogout()" class="btn logout">SAIR</button>
+
+        <button
+          id="profile-refresh"
+          class="btn confirm"
+        >
+          CONFIRMAR
+        </button>
+
+        <button
+          id="profile-logout"
+          class="btn logout"
+          onclick="setupLogout();"
+        >
+          SAIR
+        </button>
+
       </div>
 
     </section>
